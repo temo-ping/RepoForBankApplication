@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  # 1. მონაცემთა ბაზა (MS SQL Server)
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver_db
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=BankDb_Pass2026!
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql_data:/var/opt/mssql
+
+  # 2. ბექენდი (ASP.NET - BankApi)
+  backend:
+    image: banking-backend
+    container_name: banking_api
+    build:
+      context: ./Bank-Back/BankApi/BankApi
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      # სერვერად გადავეცით სერვისის სახელი (sqlserver) და ბაზად BankApplication
+      - ConnectionStrings__DefaultConnection=Server=sqlserver_db;Database=BankApplication;User Id=sa;Password=BankDb_Pass2026!;TrustServerCertificate=True;
+      - ASPNETCORE_URLS=http://+:5000
+    depends_on:
+      - sqlserver
+
+  # 3. ფრონტენდი (React)
+  frontend:
+    image: banking-frontend
+    container_name: banking_ui
+    build:
+      context: ./Bank-Front/my-app
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - HTTPS=false
+    depends_on:
+      - backend
+
+volumes:
+  mssql_data:

@@ -1,0 +1,233 @@
+/* გლობალური სტილები */
+:root {
+  --primary-color: #1e3a8a;       
+  --secondary-color: #10b981;    
+  --dark-color: #111827;          
+  --light-text: #6b7280;          
+  --bg-color: #f9fafb;            
+  --card-bg: #ffffff;             
+  --border-color: #e5e7eb;         
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--dark-color);
+}
+
+/* მთავარი კონტეინერი და Layout */
+.dashboard-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.dashboard-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 0;
+}
+
+.refresh-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.refresh-btn:hover {
+  background-color: #1d4ed8;
+}
+
+/* სამ სვეტიანი ბადე (Grid) */
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.full-width-column {
+  grid-column: span 3;
+}
+
+/* საერთო სტილი ბარათებისთვის (Cards) */
+.bank-card {
+  background-color: var(--card-bg);
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  border: 1px solid var(--border-color);
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: var(--dark-color);
+}
+
+/* ფორმების სტილი */
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--dark-color);
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+}
+
+.form-input.font-mono {
+  font-family: monospace;
+  letter-spacing: 0.5px;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.submit-btn.btn-primary { background-color: var(--primary-color); }
+.submit-btn.btn-secondary { background-color: var(--secondary-color); }
+.submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* ანგარიშების სიის სტილი */
+.account-list {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+.account-item {
+  padding: 16px;
+  background-color: #f9fafb;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.account-name {
+  font-weight: 600;
+  font-size: 16px;
+  margin: 0 0 4px 0;
+}
+
+.account-guid {
+  font-family: monospace;
+  font-size: 11px;
+  color: var(--light-text);
+  background: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+}
+
+.account-balance-box {
+  text-align: right;
+}
+
+.account-balance {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--dark-color);
+}
+
+.currency {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--light-text);
+}
+
+/* ტრანზაქციების ცხრილის სტილი */
+.table-responsive {
+  overflow-x: auto;
+}
+
+.bank-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 14px;
+}
+
+.bank-table th {
+  background-color: #f3f4f6;
+  padding: 12px 16px;
+  font-weight: 600;
+  color: var(--light-text);
+}
+
+.bank-table td {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.guid-text {
+  font-family: monospace;
+  font-size: 12px;
+  color: var(--light-text);
+}
+
+.amount-text {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--dark-color);
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+  color: var(--secondary-color);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--secondary-color);
+  border-radius: 50%;
+}
